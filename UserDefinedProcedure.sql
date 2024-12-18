@@ -98,3 +98,13 @@ declare @max int
 exec MinMax 10,@min output,@max output
 select @min,@max
 
+----Enter two number as input and display addition as output
+create procedure Addition(@num1 as int,@num2 as int,@add int output)
+as
+begin
+set @add=@num1+@num2
+end
+
+declare @addition int
+exec Addition 34,14 ,@addition output
+select @addition
