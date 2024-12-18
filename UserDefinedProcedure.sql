@@ -142,3 +142,6 @@ end
 exec InsRec 10
 
 select * from emp;
+
+/* Create procedure calculate commision it will take department number as input parameter if department number is 10 then update all the
+ commision with 2000 if department number is 20 update all the Commision with 3000 and for the other department commision is 5% of salary. */
