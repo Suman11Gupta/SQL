@@ -126,3 +126,19 @@ declare @res varchar(30)
 exec ELGPro 11,@res output
 select @res
 
+---Insert record in Employee table
+
+create procedure InsRec(@deptno int)
+as
+begin
+	declare @C int;
+	select @C=count(*) from emp where deptno=@deptno;
+	If(@C<5)
+		insert into emp(empno,deptno,ename) values(20052002,@deptno,'Vineet')
+	Else
+	select 'count not less than 5'
+end
+
+exec InsRec 10
+
+select * from emp;
