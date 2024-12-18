@@ -71,3 +71,30 @@ select deptno=@dno,sum(sal) from emp;
 end
 
 exec pdept 10;
+
+---Output
+
+----Total salary 
+create procedure totalsal(@deptno int,@total int output)
+as
+begin
+select @total=sum(sal) from emp group by (deptno) having deptno=@deptno
+end
+
+declare @T int;
+exec totalsal 20,@T output
+select @T
+
+----create procedure to find minimum and maximum salary of each department
+
+create procedure MinMax(@deptno as int,@min int Output,@max int Output)
+as
+begin
+select @min=min(sal),@max=max(sal) from emp where deptno=@deptno
+end
+
+declare @min int
+declare @max int
+exec MinMax 10,@min output,@max output
+select @min,@max
+
