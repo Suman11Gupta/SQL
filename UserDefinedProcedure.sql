@@ -108,3 +108,21 @@ end
 declare @addition int
 exec Addition 34,14 ,@addition output
 select @addition
+
+--If Else
+
+----Eligible for vote or not
+
+create procedure ElGPro(@age int,@result varchar(30) output)
+as
+begin
+	IF(@age>=18)
+		select @result='Eligible for voting'
+	ELSE
+		select @result='Not eligible for vote'
+end
+
+declare @res varchar(30)
+exec ELGPro 11,@res output
+select @res
+
