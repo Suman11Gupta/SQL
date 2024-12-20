@@ -145,3 +145,52 @@ select * from emp;
 
 /* Create procedure calculate commision it will take department number as input parameter if department number is 10 then update all the
  commision with 2000 if department number is 20 update all the Commision with 3000 and for the other department commision is 5% of salary. */
+
+---While loop
+
+ create procedure loopshow(@start int,@end int)
+ as
+ declare @c int=@start
+ while @c<=@end
+ begin
+	print @c
+	set @c=@c+1
+ end
+
+ exec loopshow 120,125
+
+----Enter n number display its table
+
+alter procedure table1(@num int)
+as 
+begin 
+	declare @c int=1
+	while(@c <= 10)
+		begin 
+			print Cast (@num as varchar(10))+'X'+Cast(@c as varchar(10))+'='+Cast((@num*@c) as varchar(10))
+			set @c=@c+1
+		end
+end
+
+ exec table1 2;
+
+ ----bikeshop 
+
+ use emp_dept
+
+ create table bikeshop
+ (
+ id int Primary Key Identity,
+ bike_name varchar(50) Not null,
+ price float
+ )
+
+ declare @count int;
+ set @count=1;
+ while @count<=10
+ begin
+ Insert into bikeshop values('Bike'+Cast(@count as varchar),@count*5000)
+ set @count=@count+1;
+ end;
+
+ select * from bikeshop;
