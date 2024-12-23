@@ -60,3 +60,39 @@ into @ename
 end
 close name_cursor1;
 deallocate name_cursor1;
+
+----ROLL NO,NAME PERCENTAGE grading system
+
+create table Student(roll_number int,name varchar(10),percentage int);
+
+insert into Student values (101,'Jyoti',50),(102,'Shubham',68),(103,'shalini',89),(104,'Shweta',45),(105,'Alok',99),(106,'moumita',85),(107,'Joy',35);
+
+declare @percentage int ;
+print '-----------Grade-----------';
+
+declare grade_cursor cursor for
+select percentage from Student
+
+open grade_cursor;
+
+fetch next from grade_cursor
+into @percentage
+
+print 'percentage   Grade'
+
+while @@fetch_status=0
+begin
+ if @percentage<=35
+     Print  cast (@percentage as varchar(10))+'       '+' Grade D'
+ else if @percentage<=60
+     Print   cast (@percentage as varchar(10))+'       '+' Grade C'
+ else if @percentage<=80
+     Print   cast (@percentage as varchar(10))+'        '+' Grade B'
+ else 
+	 Print   cast (@percentage as varchar(10))+'        '+' Grade A'
+	 fetch next from grade_cursor
+	 into @percentage
+	 end
+     close grade_cursor;
+	 deallocate grade_cursor;
+
