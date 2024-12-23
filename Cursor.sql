@@ -33,3 +33,30 @@ end
 close emp_cursor1;
 deallocate emp_cursor1;
 
+/* create cursor to display  employee name from employee table if employee name starts with s the name should concatenate
+with have a nice day and for all other names display the message WELCOME */
+
+declare @ename varchar(10);
+Print '------Concatenate---------'
+declare name_cursor1 cursor for
+select ename from emp;
+
+open name_cursor1
+
+fetch next from name_cursor1
+into @ename
+
+print 'Name      Message'
+
+While @@Fetch_status=0
+Begin
+if @ename like 's%'
+     print @ename+' Have a nice day!!!!! '
+else
+print @ename+' Welcome!!!!'
+fetch next from name_cursor1
+into @ename
+
+end
+close name_cursor1;
+deallocate name_cursor1;
